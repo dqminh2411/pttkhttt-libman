@@ -57,7 +57,7 @@ public class RegisterServlet extends HttpServlet {
                 (String) request.getParameter("username"),
                 BCrypt.hashpw((String) request.getParameter("password"), BCrypt.gensalt(12))
         );
-        LibraryCard lc = new LibraryCard("C0001", 10, LibraryCardStatus.ACTIVE.toString(), now, r);
+        LibraryCard lc = new LibraryCard("C0001", 10, LibraryCardStatus.ACTIVE.toString(), now, r,0);
         libraryCardDAO.addReader(lc);
     }
 

@@ -1,12 +1,12 @@
  <%@ page contentType="text/html;charset=UTF-8" language="java" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ Thống Quản Lý Thư Viện - Đăng Nhập</title>
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
 </head>
 <body>
     <div class="login-container">
@@ -20,6 +20,7 @@
                 </div>
                 <h1>Hệ Thống Quản Lý Thư Viện</h1>
                 <p class="subtitle">Cổng Thư Viện Đại Học</p>
+                <h2>Đăng Nhập Nhân viên</h2>
             </div>
 
 
@@ -29,7 +30,7 @@
 
 
 
-            <form action="${pageContext.request.contextPath}/auth/login" method="post" class="login-form">
+            <form action="${pageContext.request.contextPath}/auth/librarian/login" method="post" class="login-form">
                 <div class="form-group">
                     <label for="username">Tên đăng nhập</label>
                     <input 

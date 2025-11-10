@@ -1,0 +1,596 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #f8f8f8;
+    color: #333333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #333333;
+}
+
+.logo-section svg {
+    flex-shrink: 0;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 24px;
+    flex: 1;
+}
+
+.nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: #666666;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    color: #333333;
+    background-color: #f5f5f5;
+}
+
+.nav-link.active {
+    color: #333333;
+    background-color: #e8e8e8;
+    font-weight: 600;
+}
+
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333333;
+}
+
+.logout-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666666;
+    background-color: transparent;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+    color: #333333;
+    border-color: #333333;
+    background-color: #f5f5f5;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 24px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Action Bar */
+.action-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary,
+.btn-back {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.btn-primary {
+    color: #FFFFFF;
+    background-color: #333333;
+}
+
+.btn-primary:hover {
+    background-color: #1a1a1a;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(51, 51, 51, 0.2);
+}
+
+.btn-secondary {
+    color: #333333;
+    background-color: #FFFFFF;
+    border: 1px solid #d0d0d0;
+}
+
+.btn-secondary:hover {
+    background-color: #f5f5f5;
+    border-color: #333333;
+}
+
+.btn-back {
+    color: #666666;
+    background-color: #FFFFFF;
+    border: 1px solid #d0d0d0;
+}
+
+.btn-back:hover {
+    color: #333333;
+    border-color: #333333;
+}
+
+/* Slip Container */
+.slip-container {
+    background-color: #FFFFFF;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 48px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Slip Header */
+.slip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #333333;
+}
+
+.university-info h1 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.university-info h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 12px;
+}
+
+.university-info p {
+    font-size: 12px;
+    color: #666666;
+    margin: 2px 0;
+}
+
+.slip-logo {
+    color: #333333;
+}
+
+/* Slip Title */
+.slip-title {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.slip-title h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.slip-number {
+    font-size: 14px;
+    color: #666666;
+    font-style: italic;
+}
+
+.slip-number span {
+    font-weight: 600;
+    color: #333333;
+}
+
+/* Info Section */
+.info-section {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.info-item {
+    display: flex;
+    gap: 8px;
+}
+
+.info-item .label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #666666;
+    min-width: 140px;
+}
+
+.info-item .value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333333;
+}
+
+/* Books Section */
+.books-section {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.books-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 13px;
+}
+
+.books-table thead {
+    background-color: #f8f8f8;
+}
+
+.books-table th {
+    padding: 12px 8px;
+    text-align: left;
+    font-weight: 600;
+    color: #333333;
+    border: 1px solid #e0e0e0;
+}
+
+.books-table td {
+    padding: 10px 8px;
+    border: 1px solid #e0e0e0;
+    color: #333333;
+}
+
+.books-table .text-center {
+    text-align: center;
+}
+
+.books-summary {
+    margin-top: 16px;
+    text-align: right;
+    font-size: 14px;
+    color: #333333;
+}
+
+.books-summary strong {
+    font-weight: 600;
+}
+
+/* Terms Section */
+.terms-section {
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.terms-list {
+    margin-top: 12px;
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.terms-list li {
+    font-size: 13px;
+    color: #333333;
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+/* Signatures */
+.signatures {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    padding: 20px 0;
+}
+
+.signature-box {
+    text-align: center;
+    flex: 1;
+}
+
+.signature-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 4px;
+}
+
+.signature-note {
+    font-size: 12px;
+    color: #666666;
+    font-style: italic;
+    margin-bottom: 16px;
+}
+
+.signature-space {
+    height: 80px;
+    border-bottom: 1px solid #d0d0d0;
+    margin: 0 20px;
+}
+
+.signature-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #333333;
+    margin-top: 8px;
+}
+
+/* Slip Footer */
+.slip-footer {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.footer-note {
+    font-size: 12px;
+    color: #666666;
+    font-style: italic;
+    margin-bottom: 4px;
+}
+
+.footer-note span {
+    font-weight: 600;
+    color: #333333;
+}
+
+.footer-warning {
+    font-size: 12px;
+    color: #d32f2f;
+    font-weight: 500;
+}
+
+/* Page Footer */
+.footer {
+    background-color: #FFFFFF;
+    border-top: 1px solid #e0e0e0;
+    padding: 16px 24px;
+    margin-top: auto;
+}
+
+.footer .container {
+    text-align: center;
+}
+
+.footer p {
+    font-size: 12px;
+    color: #666666;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background-color: #FFFFFF;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .main-content {
+        padding: 0;
+    }
+
+    .slip-container {
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 20px;
+    }
+
+    .slip-header {
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+    }
+
+    .slip-title {
+        margin-bottom: 24px;
+    }
+
+    .info-section,
+    .books-section,
+    .terms-section {
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+    }
+
+    .signatures {
+        margin-bottom: 16px;
+        page-break-inside: avoid;
+    }
+
+    .signature-space {
+        height: 60px;
+    }
+
+    /* Ensure table doesn't break across pages */
+    .books-table {
+        page-break-inside: avoid;
+    }
+
+    .books-table thead {
+        display: table-header-group;
+    }
+
+    /* Adjust font sizes for print */
+    body {
+        font-size: 12pt;
+    }
+
+    .university-info h1 {
+        font-size: 14pt;
+    }
+
+    .university-info h2 {
+        font-size: 13pt;
+    }
+
+    .slip-title h3 {
+        font-size: 18pt;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .header-container {
+        flex-wrap: wrap;
+    }
+
+    .nav-menu {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        padding-top: 12px;
+        border-top: 1px solid #e0e0e0;
+    }
+
+    .slip-container {
+        padding: 24px;
+    }
+
+    .slip-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .slip-logo {
+        margin-top: 16px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .action-bar {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 16px;
+    }
+
+    .slip-container {
+        padding: 20px;
+    }
+
+    .university-info h1 {
+        font-size: 16px;
+    }
+
+    .university-info h2 {
+        font-size: 14px;
+    }
+
+    .slip-title h3 {
+        font-size: 20px;
+    }
+
+    .books-table {
+        font-size: 12px;
+    }
+
+    .books-table th,
+    .books-table td {
+        padding: 8px 4px;
+    }
+
+    .signatures {
+        flex-direction: column;
+        gap: 32px;
+    }
+}

@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LibraryCardDAO extends DAO{
     private Connection con;
@@ -65,5 +67,80 @@ public class LibraryCardDAO extends DAO{
             }
         }
         return success;
+    }
+   public List<LibraryCard> searchCards(String libraryCardId){
+         String query1 = "SELECT mc.libraryCardId, mc.registerDate, mc.borrowQuota, mc.status, " +
+                "m.memberId, m.fullname " +
+                "FROM tblreaderlibrarycard mc " +
+                "JOIN tblmember m ON mc.readerId = m.memberId " +
+                "WHERE mc.libraryCardId LIKE ?";
+        String query2 = """
+                SELECT COUNT(*) AS borrowingCount
+                FROM tblborroweditem bi
+                JOIN tblborrowslip bs 
+                    ON bi.borrowSlipId = bs.borrowSlipId
+                WHERE bs.readerId = ?
+                AND NOT EXISTS (
+                    SELECT 1
+                    FROM tblreturneditem ri
+                    WHERE ri.borrowedItemId = bi.borrowedItemId
+                );
+                """;
+        
+         List<LibraryCard> cards = new ArrayList<>();
+         
+         try{
+              ps = con.prepareStatement(query1);
+              ps.setString(1, "%" + libraryCardId + "%");
+              rs = ps.executeQuery();
+              while(rs.next()){
+                Reader reader = new Reader();
+                reader.setMemberId(rs.getInt("memberId"));
+                reader.setFullname(rs.getString("fullname"));
+
+                LibraryCard card = new LibraryCard();
+                card.setLibraryCardId(rs.getString("libraryCardId"));
+                card.setRegisterDate(rs.getDate("registerDate").toLocalDate());
+                card.setBorrowQuota(rs.getInt("borrowQuota"));
+                card.setStatus(rs.getString("status"));
+                card.setReader(reader);
+                ps = con.prepareStatement(query2);
+                ps.setInt(1, reader.getMemberId());
+                rs = ps.executeQuery();
+                if(rs.next()){
+                    card.setBorrowingCount(rs.getInt("borrowingCount"));
+                }
+                cards.add(card);
+              }
+         }catch(Exception e){
+              e.printStackTrace();
+         }
+         return cards;
+    }
+    public LibraryCard getLibraryCardById(String libraryCardId){
+        String query = "SELECT * FROM tblreaderlibrarycard WHERE librararyCardId = ?";
+        LibraryCard card = null;
+        try{
+            ps = con.prepareStatement(query);
+            ps.setString(1, libraryCardId);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                Reader reader = new Reader();
+                reader.setMemberId(rs.getInt("readerId"));
+
+                card = new LibraryCard(
+                    rs.getString("libraryCardId"),
+                    rs.getInt("borrowQuota"),
+                    rs.getString("status"),
+                    rs.getDate("registerDate").toLocalDate(),
+                    reader,
+                        rs.getInt("borrowingCount")
+                );
+                
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return card;
     }
 }

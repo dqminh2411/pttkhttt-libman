@@ -14,6 +14,12 @@ public class BorrowedItem implements Serializable {
         this.item = item;
         this.borrowSlip = borrowSlip;
     }
+    
+
+    public BorrowedItem(BorrowSlip borrowSlip, Item item) {
+        this.borrowSlip = borrowSlip;
+        this.item = item;
+    }
 
     public int getBorrowedItemId() { return borrowedItemId; }
     public void setBorrowedItemId(int borrowedItemId) { this.borrowedItemId = borrowedItemId; }

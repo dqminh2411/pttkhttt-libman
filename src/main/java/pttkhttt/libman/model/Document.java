@@ -13,11 +13,14 @@ public class Document implements Serializable {
     private String type;
     private String genre;
     private int pages;
+    private String description;
+    private String status;
+    private String imgPath;
 
     public Document() {}
 
     public Document(String documentId, String title, String author, int publishYear,
-                    String publisher, String language, String type, String genre, int pages) {
+                    String publisher, String language, String type, String genre, int pages, String description, String imgPath) {
         this.documentId = documentId;
         this.title = title;
         this.author = author;
@@ -27,6 +30,39 @@ public class Document implements Serializable {
         this.type = type;
         this.genre = genre;
         this.pages = pages;
+        this.description = description;
+        this.imgPath = imgPath;
+    }
+
+    
+    public Document(String title, String author, int publishYear) {
+        this.title = title;
+        this.author = author;
+        this.publishYear = publishYear;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getDocumentId() { return documentId; }

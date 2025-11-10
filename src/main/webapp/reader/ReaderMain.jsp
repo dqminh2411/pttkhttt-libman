@@ -1,11 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Chủ Độc Giả - Hệ Thống Quản Lý Thư Viện</title>
-    <link rel="stylesheet" href="../css/reader-home.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reader-home.css">
 </head>
 <body>
     <!-- Header -->
@@ -19,15 +20,18 @@
                 <span class="logo-text">Hệ Thống Thư Viện</span>
             </div>
             <nav class="nav-menu">
-                <a href="#" class="nav-link active">Trang Chủ</a>
-                <a href="#" class="nav-link">Tìm Sách</a>
-                <a href="#" class="nav-link">Sách Của Tôi</a>
-                <a href="#" class="nav-link">Lịch Sử</a>
+                <a href="" class="nav-link active">Trang Chủ</a>
+                <a href="/document" class="nav-link">Tìm Sách</a>
+<%--                <a href="#" class="nav-link">Sách Của Tôi</a>--%>
+<%--                <a href="#" class="nav-link">Lịch Sử</a>--%>
             </nav>
-            <div class="user-section">
-                <span class="user-name">John Doe</span>
-                <button class="logout-btn">Đăng Xuất</button>
-            </div>
+            <c:if test="${not empty sessionScope.member}">
+                <div class="user-section">
+                    <span class="user-name">${sessionScope.member.fullname}</span>
+                    <button class="logout-btn">Đăng Xuất</button>
+                </div>
+            </c:if>
+
         </div>
     </header>
 
@@ -36,7 +40,7 @@
         <div class="container">
             <!-- Welcome Section -->
             <section class="welcome-section">
-                <h1>Chào mừng trở lại, John!</h1>
+                <h1>Chào mừng trở lại, ${sessionScope.member.fullname}</h1>
                 <p class="welcome-subtitle">Quản lý sách đã mượn và khám phá đầu sách mới</p>
             </section>
 

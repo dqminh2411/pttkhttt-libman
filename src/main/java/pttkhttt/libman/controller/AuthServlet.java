@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import pttkhttt.libman.dao.MemberDAO;
+import pttkhttt.libman.model.EmployeePosition;
+import pttkhttt.libman.model.Librarian;
 import pttkhttt.libman.model.Member;
 
 import java.io.IOException;
@@ -30,8 +32,10 @@ public class AuthServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getPathInfo();
-        if(action.equals("/login")){
-            request.getRequestDispatcher("/reader/login.jsp").forward(request, response);
+        if(action.equals("/reader/login")){
+            request.getRequestDispatcher("/reader/Login.jsp").forward(request, response);
+        }else if(action.equals("/librarian/login")){
+            request.getRequestDispatcher("/librarian/Login.jsp").forward(request, response);
         }
     }
 
@@ -47,7 +51,7 @@ public class AuthServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getPathInfo();
-        if(action.equals("/login")){
+        if(action.equals("/reader/login")){
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             Member m = new Member();
@@ -56,10 +60,25 @@ public class AuthServlet extends HttpServlet {
             Member member = memberDAO.checkMember(m);
             if(member != null){
                 request.getSession().setAttribute("member", member);
-                response.sendRedirect(request.getContextPath() + "/reader/reader-home.jsp");
+                response.sendRedirect(request.getContextPath() + "/reader/ReaderMain.jsp");
             }else{
                 request.setAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng");
-                request.getRequestDispatcher("/reader/login.jsp").forward(request, response);
+                request.getRequestDispatcher("/reader/Login.jsp").forward(request, response);
+            }
+        }else if(action.equals("/librarian/login")){
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            Member m = new Member();
+            m.setUsername(username);
+            m.setPassword(password);
+            Member member = memberDAO.checkMember(m);
+            if(member != null){
+                Librarian lib = new Librarian(member, EmployeePosition.LIBRARIAN.toString());
+                request.getSession().setAttribute("librarian", lib);
+                response.sendRedirect(request.getContextPath() + "/librarian/LibrarianMain.jsp");
+            }else{
+                request.setAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng");
+                request.getRequestDispatcher("/librarian/Login.jsp").forward(request, response);
             }
         }
     }

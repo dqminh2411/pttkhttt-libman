@@ -17,6 +17,11 @@ public class Item implements Serializable {
         this.document = document;
     }
 
+    public Item(String itemId, Document document) {
+        this.itemId = itemId;
+        this.document = document;
+    }
+
     public String getItemId() { return itemId; }
     public void setItemId(String itemId) { this.itemId = itemId; }
 
