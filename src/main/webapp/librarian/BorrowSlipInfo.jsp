@@ -44,22 +44,6 @@
                     </svg>
                     Quay Lại
                 </button>
-                <div class="action-buttons">
-                    <button class="btn-secondary" onclick="printSlip()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="6 9 6 2 18 2 18 9"></polyline>
-                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-                            <rect x="6" y="14" width="12" height="8"></rect>
-                        </svg>
-                        In Phiếu
-                    </button>
-                    <!-- <button class="btn-primary" onclick="confirmBorrow()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                        Xác Nhận Mượn
-                    </button> -->
-                </div>
             </div>
 
             <!-- Borrow Slip -->
@@ -186,6 +170,18 @@
                     <p class="footer-note">* Phiếu mượn được lập ngày <span id="createDate">${sessionScope.borrowDate}</span></p>
                     <p class="footer-warning">Vui lòng giữ phiếu này để làm căn cứ khi trả sách</p>
                 </div>
+            </div>
+
+            <!-- Print Button Below Slip -->
+            <div class="print-button-container no-print">
+                <button class="btn-print" onclick="printSlip()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                    In Phiếu
+                </button>
             </div>
         </div>
     </main>

@@ -21,6 +21,13 @@ public class BorrowSlip implements Serializable {
         this.librarian = librarian;
     }
 
+    public BorrowSlip(LocalDate borrowDate, LocalDate dueDate, LibraryCard libraryCard, Librarian librarian) {
+        this.borrowDate = borrowDate;
+        this.dueDate = dueDate;
+        this.libraryCard = libraryCard;
+        this.librarian = librarian;
+    }
+
     public String getBorrowSlipId() { return borrowSlipId; }
     public void setBorrowSlipId(String borrowSlipId) { this.borrowSlipId = borrowSlipId; }
 

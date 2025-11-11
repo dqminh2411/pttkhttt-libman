@@ -65,7 +65,7 @@ public class DocumentServlet extends HttpServlet {
             request.getRequestDispatcher("/reader/ReaderDetailedDoc.jsp").forward(request, response);
         }else if(action.equals("/item/search")){
             String id = request.getParameter("q");
-            List<Item> items = documentDAO.getDocumentItemsByDocOrItemId(id);
+            List<Item> items = documentDAO.getDocumentItemsByDocId(id);
             String json = new com.google.gson.Gson().toJson(items);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");

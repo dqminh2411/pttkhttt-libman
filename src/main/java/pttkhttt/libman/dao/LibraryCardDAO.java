@@ -118,7 +118,9 @@ public class LibraryCardDAO extends DAO{
          return cards;
     }
     public LibraryCard getLibraryCardById(String libraryCardId){
-        String query = "SELECT * FROM tblreaderlibrarycard WHERE librararyCardId = ?";
+        String query = """
+        SELECT * FROM tblreaderlibrarycard WHERE librararyCardId = ?
+        """;
         LibraryCard card = null;
         try{
             ps = con.prepareStatement(query);
@@ -127,14 +129,18 @@ public class LibraryCardDAO extends DAO{
             if(rs.next()){
                 Reader reader = new Reader();
                 reader.setMemberId(rs.getInt("readerId"));
+                reader.setFullname(rs.getString("fullname"));
+                reader.setEmail(rs.getString("email"));
+                reader.setAddress(rs.getString("address"));
+                reader.setBirthDate(rs.getDate("birthDate").toLocalDate());
+                reader.setUsername(rs.getString("username"));
 
                 card = new LibraryCard(
                     rs.getString("libraryCardId"),
+                        rs.getDate("registerDate").toLocalDate(),
                     rs.getInt("borrowQuota"),
-                    rs.getString("status"),
-                    rs.getDate("registerDate").toLocalDate(),
-                    reader,
-                        rs.getInt("borrowingCount")
+                        reader,
+                    rs.getString("status")
                 );
                 
             }

@@ -42,9 +42,6 @@
             <form id="lendForm" class="lend-form" action="/librarian/borrow-doc" method="POST">
                 <!-- Hidden fields for form submission -->
                 <input type="hidden" name="cardId" id="selectedCardId"/>
-                <input type="hidden" name="readerId" id="selectedReaderId"/>
-                <input type="hidden" name="readerFullname" id="readerFullname"/>
-                <input type="hidden" name="readerEmail" id="readerEmail"/>
                 <!-- Reader Information Section -->
                 <section class="form-section">
                     <h2 class="section-title">Thông Tin Độc Giả</h2>
@@ -206,7 +203,7 @@
     <div id="docSearchModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Tìm Kiếm Sách</h2>
+                <h2>Thêm tài liệu mượn</h2>
                 <button type="button" class="modal-close" id="closeDocModal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -390,9 +387,6 @@
             // Store reader ID for form submission
             selectedCardId = card.libraryCardId;
             document.getElementById('selectedCardId').value = card.libraryCardId;
-            document.getElementById('selectedReaderId').value = card.reader.memberId;
-            document.getElementById('readerFullname').value = card.reader.fullname;
-            document.getElementById('readerEmail').value = card.reader.email;
 
             document.getElementById('readerCardId').textContent = card.libraryCardId;
             document.getElementById('readerName').textContent = card.reader.fullname;
@@ -524,9 +518,7 @@
                 <td>\${item.document.author}</td>
                 <td>\${item.document.publishYear}</td>
                 <input type="hidden" name="itemIds" value="\${item.itemId}">
-                <input type="hidden" name="titles" value="\${item.document.title}">
-                <input type="hidden" name="authors" value="\${item.document.author}">
-                <input type="hidden" name="publishYears" value="\${item.document.publishYear}">
+
                 <td class="text-center">
                     <button type="button" class="btn-delete" onclick="removeDocFromTable(this)">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

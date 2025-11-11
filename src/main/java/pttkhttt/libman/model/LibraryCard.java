@@ -22,6 +22,14 @@ public class LibraryCard implements Serializable {
         this.reader = reader;
     }
 
+    public LibraryCard(String libraryCardId, LocalDate registerDate, int borrowQuota, Reader reader, String status) {
+        this.libraryCardId = libraryCardId;
+        this.registerDate = registerDate;
+        this.borrowQuota = borrowQuota;
+        this.reader = reader;
+        this.status = status;
+    }
+
     public LibraryCard(String libraryCardId, Reader reader) {
         this.libraryCardId = libraryCardId;
         this.reader = reader;

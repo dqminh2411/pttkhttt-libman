@@ -31,5 +31,8 @@
             </div>
         </div>
     </header>
+    <div style="display: flex; justify-content: center;">
+        <h1>Trang chủ nhân viên</h1>
+    </div>
 </body>
 </html>

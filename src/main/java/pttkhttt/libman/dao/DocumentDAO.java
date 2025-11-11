@@ -118,19 +118,18 @@ public class DocumentDAO extends DAO{
         }
         return document;
     }
-    public List<Item> getDocumentItemsByDocOrItemId(String id){
+    public List<Item> getDocumentItemsByDocId(String id){
         String query = """
         SELECT i.itemId, i.status, i.position,d.documentId, d.title, d.author, d.publishYear 
         FROM tblitem i 
         JOIN tbldocument d 
         ON i.documentId = d.documentId 
-        WHERE i.documentId LIKE ? OR i.itemId LIKE ? 
+        WHERE i.documentId LIKE ?  
         """;
         List<Item> items = new ArrayList<>();
         try{
             ps = con.prepareStatement(query);
             ps.setString(1, "%" + id + "%");
-            ps.setString(2, "%" + id + "%");
             rs = ps.executeQuery();
             while(rs.next()){
                 Document document = new Document();
@@ -150,5 +149,34 @@ public class DocumentDAO extends DAO{
             e.printStackTrace();
         }
         return items;
+    }
+    public Item getItemById(String id){
+        String q = "SELECT i.itemId, i.status, i.position,d.documentId, d.title, d.author, d.publishYear " +
+                "FROM tblitem i " +
+                "JOIN tbldocument d " +
+                "ON i.documentId = d.documentId " +
+                "WHERE i.itemId = ? ";
+        Item item = null;
+        try{
+            ps = con.prepareStatement(q);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                Document document = new Document();
+                document.setDocumentId(rs.getString("documentId"));
+                document.setTitle(rs.getString("title"));
+                document.setAuthor(rs.getString("author"));
+                document.setPublishYear(rs.getInt("publishYear"));
+                item = new Item(
+                        rs.getString("itemId"),
+                        rs.getString("position"),
+                        rs.getString("status"),
+                        document
+                );
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return item;
     }
 }

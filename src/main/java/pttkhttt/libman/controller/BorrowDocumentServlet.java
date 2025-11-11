@@ -19,9 +19,11 @@ public class BorrowDocumentServlet extends HttpServlet {
 
     private final LibraryCardDAO libraryCardDAO;
     private final BorrowSlipDAO borrowSlipDAO;
+    private final DocumentDAO documentDAO;
     public BorrowDocumentServlet() {
         this.libraryCardDAO = new LibraryCardDAO();
         this.borrowSlipDAO = new BorrowSlipDAO();
+        this.documentDAO = new DocumentDAO();
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
@@ -39,7 +41,7 @@ public class BorrowDocumentServlet extends HttpServlet {
         String action = request.getPathInfo();
         if(action == null) action = "/";
         if(action.equals("/")){
-            request.getRequestDispatcher("/librarian/LendBook.jsp").forward(request, response);
+            request.getRequestDispatcher("/librarian/LendDocument.jsp").forward(request, response);
         }else if(action.equals("/slip")){
             request.getRequestDispatcher("/librarian/BorrowSlipInfo.jsp").forward(request, response);
         }
@@ -61,37 +63,22 @@ public class BorrowDocumentServlet extends HttpServlet {
         if(action.equals("/")){
             // Handle form submission for borrowing documents
             String cardId = request.getParameter("cardId");
-            int readerId = Integer.parseInt(request.getParameter("readerId"));
-            String readerFullname = request.getParameter("readerFullname");
-            String readerEmail = request.getParameter("readerEmail");
-
             String[] itemIds = request.getParameterValues("itemIds");
-            String[] titles = request.getParameterValues("titles");
-            String[] authors = request.getParameterValues("authors");
-            String[] publishYears = request.getParameterValues("publishYears");
-
-
             String borrowDate = request.getParameter("borrowDate");
             String dueDate = request.getParameter("dueDate");
 
             Librarian librarian = (Librarian) request.getSession().getAttribute("librarian");
 
-            BorrowSlip bs = new BorrowSlip();
-            bs.setBorrowDate(LocalDate.parse(borrowDate));
-            bs.setDueDate(LocalDate.parse(dueDate));
-            bs.setLibrarian(librarian);
+            LibraryCard lc = libraryCardDAO.getLibraryCardById(cardId);
 
-            Reader r = new Reader(readerId, readerFullname, readerEmail);
-            LibraryCard lc = new LibraryCard(cardId, r);
+            BorrowSlip bs = new BorrowSlip(LocalDate.parse(borrowDate),LocalDate.parse(dueDate),lc,librarian);
 
-            bs.setLibraryCard(lc);
 
             List<BorrowedItem> borrowedItems = new ArrayList<>();
             for (int i=0; i<itemIds.length; i++ ) {
-                Document d = new Document(titles[i], authors[i], Integer.parseInt(publishYears[i]));
-                Item item = new Item(itemIds[i], d);
-                BorrowedItem borrowedItem = new BorrowedItem(bs, item);
-                borrowedItems.add(borrowedItem);
+                Item item = documentDAO.getItemById(itemIds[i]);
+                BorrowedItem bi = new BorrowedItem(bs, item);
+                borrowedItems.add(bi);
             }
             bs = borrowSlipDAO.saveBorrowSlip(bs, borrowedItems);
             if(bs != null){
